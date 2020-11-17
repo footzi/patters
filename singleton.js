@@ -1,25 +1,25 @@
 class Singleton {
-    instance = null;
+  instance = null;
 
-    constructor() {
-        if (Singleton.instance) {
-            return Singleton.instance
-        }
-        
-        this.count = 0;
-        Singleton.instance = this;
-        return this;
+  constructor() {
+    if (Singleton.instance) {
+      return Singleton.instance;
     }
 
-    increase() {
-        return this.count++;
-    }
+    this.count = 0;
+    Singleton.instance = this;
+    return this;
+  }
 
-    getCount() {
-        return this.count;
-    }
+  increase() {
+    return this.count++;
+  }
+
+  getCount() {
+    return this.count;
+  }
 }
 
 module.exports = {
-    Singleton
-}
+  Singleton,
+};
