@@ -53,13 +53,40 @@ const premiumCar = new CarBuilder()
 
 // console.log(standartCar, premiumCar);
 
-
 // Структурные паттерны
 
 // Adapter
-const { OldCalc, NewCalc, NewCalcAdapter } = require("./builder");
+const { OldCalc, NewCalc, NewCalcAdapter } = require("./adapter");
 
-const r1 = new OldCalc.operations(5, 5, 'add'); // todo Error
-const r2 = new NewCalc.add(5, 5);
-const r3 = new NewCalcAdapter.operations(5, 5);
-console.log(r1, r2, r3)
+const r1 = new OldCalc().operations(5, 5, "add"); // todo Error
+const r2 = new NewCalc().add(5, 5);
+const r3 = new NewCalcAdapter().operations(5, 5, "add");
+// console.log(r1, r2, r3)
+
+// Bridge
+const { Bmw, Audi, BlackColor, RedColor } = require("./bridge");
+
+const blackBmw = new Bmw(new BlackColor());
+const redAudi = new Audi(new RedColor());
+
+// console.log(blackBmw.paint(), redAudi.paint());
+
+// Decorator
+const { Server, AwsServer } = require("./decorator");
+const aws = new AwsServer(new Server());
+
+// console.log(aws.getPrice());
+// console.log(aws.getPort());
+
+
+// Facade
+const { BuyCar } = require("./facade");
+const myNewCar = new BuyCar('vw');
+
+// console.log(myNewCar.getPrice());
+
+const { PermissionServer, Authorization } = require("./proxy");
+const auth = new PermissionServer(new Authorization()); 
+
+console.log(auth.login('Peter'));
+console.log(auth.login('Vlad'));
