@@ -78,15 +78,40 @@ const aws = new AwsServer(new Server());
 // console.log(aws.getPrice());
 // console.log(aws.getPort());
 
-
 // Facade
 const { BuyCar } = require("./facade");
-const myNewCar = new BuyCar('vw');
+const myNewCar = new BuyCar("vw");
 
 // console.log(myNewCar.getPrice());
 
 const { PermissionServer, Authorization } = require("./proxy");
-const auth = new PermissionServer(new Authorization()); 
+const auth = new PermissionServer(new Authorization());
 
-console.log(auth.login('Peter'));
-console.log(auth.login('Vlad'));
+// console.log(auth.login('Peter'));
+// console.log(auth.login('Vlad'));
+
+// Composite
+const { Lada, Body, Wheels } = require("./composite");
+const myCar = new Lada();
+
+myCar.add(new Body());
+myCar.add(new Wheels());
+
+// console.log(`My car: ${myCar.getName()}, price: ${myCar.getPrice()}`);
+
+// Flyweight
+const { RequestFactory } = require("./flyweight");
+const requestFactory = new RequestFactory();
+
+// console.log(requestFactory.call("getProfile", { userId: 1 }));
+// console.log(requestFactory.call("getProfile", { userId: 1 }));
+// console.log(requestFactory.call("getProfile", { userId: 2 }));
+
+// Meдиатор
+const { Airoport, Plane } = require("./mediator");
+const heathrow = new Airoport();
+const airbus330 = new Plane("a330", heathrow);
+const boing777 = new Plane("b777", heathrow);
+
+// boing777.requestBoarding();
+// airbus330.requestBoarding();
