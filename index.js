@@ -115,3 +115,35 @@ const boing777 = new Plane("b777", heathrow);
 
 // boing777.requestBoarding();
 // airbus330.requestBoarding();
+
+// Iterator
+const { IteratorArray, IteratorObjects } = require("./iterator");
+
+const arrayCollection = new IteratorArray(["1", "2", "3"]);
+
+// while (arrayCollection.hasNext()) {
+//   console.log(arrayCollection.next());
+// }
+
+const objectCollection = new IteratorObjects({
+  audi: { id: "1", name: "Vlad" },
+  vw: { id: "2", name: "Test" },
+});
+
+// while (objectCollection.hasNext()) {
+//   console.log(objectCollection.next());
+// }
+
+
+// Chain of Responsibility
+const { Visa, PayPal, WebMoney } = require("./chain-of-responsibility");
+
+const visa = new Visa(100);
+const paypal = new PayPal(200);
+const webmoney = new WebMoney(500);
+
+// Устанавливаем зависимости
+visa.setNext(paypal);
+paypal.setNext(webmoney);
+
+// visa.pay(400)
